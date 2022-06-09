@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <title>File filter</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../assets/bootstrap-5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap-5.2.0/css/bootstrap.css.map">
+
+    <!-- Bootstrap-icons -->
+    <link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.3/bootstrap-icons.css">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main class="m-3" style="height:445px;">
+        <form>
+            <div class="form-group mb-3">
+                <label for="filePath">Carpeta a ordenar: </label>
+                <input type="file" class="form-control mt-3" id="filePath" webkitdirectory>
+            </div>
+        </form>
+        <div class="row visually-hidden  " id="card-group" style="height: 350px; width: 100%;">
+            <div class="col-4 overflow-auto mh-100 ">
+                <div class="card" id="files-card">
+
+                    <div class="card-header placeholder-wave  d-flex justify-content-between align-items-start ">
+
+                        <span class="placeholder col-10 placeholder-lg"></span>
+                        <span class="placeholder col-1 bg-primary rounded-pill"></span>
+
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush placeholder-wave">
+                            <li class="list-group-item">
+
+                                <span class="placeholder  bg-secondary col-10 placeholder-lg"></span>
+
+                            </li>
+                            <li class="list-group-item">
+                                <span class="placeholder  bg-secondary col-10 placeholder-lg"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="placeholder  bg-secondary col-10 placeholder-lg"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col w-100 ">
+                <div class="card mb-3 o">
+                    <div class="card-header">Previsualización:</div>
+                    <div class="card-body overflow-auto" style="height: 300px;"  > 
+                        <div class="row">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer class=" mx-4 text-end fs-6">
+        <a href="https://github.com/altaskur/altaskur" class="link-secondary text-decoration-none"> <i
+                class="bi bi-github"></i> altaskur </a>
+        <a href="https://www.twitch.tv/altaskur" class="link-secondary text-decoration-none"><i
+                class="bi bi-twitch"></i>
+            altaskur</a>
+    </footer>
+
+    <!-- JavaScript page controller -->
+    <script src="./controller.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="../../assets/bootstrap-5.2.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
