@@ -12,7 +12,7 @@ function readFilesController() {
         "imágenes": ["png", "jpg", "jpeg", "gif", "bmp", "tiff", "svg", "ico"],
         "videos": ["mp4", "avi", "mkv", "mov", "flv", "wmv", "mpg", "mpeg", "3gp", "m4v", "mts", "m2ts", "ts", "webm", "vob", "m4p", "m4v", "m4b", "m4r", "m4a", "aac", "mp3", "wav", "wma", "ogg", "oga", "mid", "midi", "wv", "amr", "aif", "aiff", "aifc", "cda", "au", "snd", "flac", "m4a", "m4p", "m4b", "m4r", "mp3", "wav", "wma", "ogg", "oga", "mid", "midi", "wv", "amr", "aif", "aiff", "aifc", "cda", "au", "snd", "flac"],
         "audios": ["mp3", "wav", "flac", "ogg", "wma"],
-        "documentos": ["pdf", "txt", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "md", "markdown", ],
+        "documentos": ["pdf", "txt", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "md", "markdown"],
         "ejecutables": ["exe", "msi", "dev"],
         "comprimidos": ["zip", "rar", "7z", "tar", "gz", "bz2"],
         "isos": ["iso"],
@@ -26,50 +26,34 @@ function readFilesController() {
         let filesFiltered = [];
         let filterData = {};
 
-        // let filterData = {
-        //     "images": [ 0 ,["path"] ]
-        // };
+
 
         let files = fs.readdirSync(arg);
+
+        let numberOfFiles = files.length;
+        let numberOfFilesFiltered = 0;
+
         files.forEach(file => {
             let filePath = path.join(arg, file);
             // console.log(filePath);
             // console.log("file: " + file);
             fs.lstatSync(filePath).isDirectory() ? null : filesFiltered.push(file) // if is a directory, do nothing;
-
-            let fileExtension = file.split(".").pop();
-            // console.log("fileExtension: " + fileExtension);
-            // Filtramos por fileExtension
-
+            
+            let fileExtension = file.split('.').pop();
 
             for (let key in extensions) {
                 if (extensions[key].includes(fileExtension)) {
 
-                    if (filterData[key] == undefined) {
-
-                        filterData[key] = {
-                            "path": [filePath],
-                            "name": [file],
-                            "extension": [fileExtension]
-                        };
-                    } else {
-                        filterData[key].path.push(filePath);
-                        filterData[key].name.push(file);
-
-                        filterData[key].extension.forEach(ext => {
-                            if (ext != fileExtension) {
-                                filterData[key].extension.push(fileExtension);
-                            }
-                        });
+                    if (!filterData[key]) {
+                        filterData[key] = [];
                     }
-                };
-            };
-
-
-
+                    filterData[key].push(file);
+                }   
+            }
         });
-        console.log(filterData);
-        event.sender.send('sendFiles', [filesFiltered, filterData]);
+        // console.log(numberOfFiles + " vs " + filterData["documentos"].length);
+
+        event.sender.send('sendFiles', filterData);
     });
 
 }

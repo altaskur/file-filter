@@ -22,44 +22,36 @@
 <body>
     <main class="m-3" style="height:445px;">
         <form>
-            <div class="form-group mb-3">
-                <label for="filePath">Carpeta a ordenar: </label>
-                <input type="file" class="form-control mt-3" id="filePath" webkitdirectory>
+            <div class="form-group mb-3 d-flex justify-content-between"">
+                <div>
+                    <label for=" filePath">Carpeta a ordenar: </label>
+                    <input type="file" class="form-control mt-3" id="filePath" webkitdirectory>
+                </div>
+                <input type="button" class="btn btn-primary visually-hidden" value="Ordenar">
             </div>
         </form>
-        <div class="row visually-hidden  " id="card-group" style="height: 350px; width: 100%;">
-            <div class="col-4 overflow-auto mh-100 ">
-                <div class="card" id="files-card">
 
-                    <div class="card-header placeholder-wave  d-flex justify-content-between align-items-start ">
-
-                        <span class="placeholder col-10 placeholder-lg"></span>
-                        <span class="placeholder col-1 bg-primary rounded-pill"></span>
-
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush placeholder-wave">
-                            <li class="list-group-item">
-
-                                <span class="placeholder  bg-secondary col-10 placeholder-lg"></span>
-
-                            </li>
-                            <li class="list-group-item">
-                                <span class="placeholder  bg-secondary col-10 placeholder-lg"></span>
-                            </li>
-                            <li class="list-group-item">
-                                <span class="placeholder  bg-secondary col-10 placeholder-lg"></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <h2 class="text-center visually-hidden">
+            <cite class="text-primary ">Cargando archivos </cite>
+            <div class="spinner-grow spinner-grow-sm text-primary" style="width: 10px; height: 10px;" role="status">
+                <span class="visually-hidden">Loading...</span>
             </div>
+            <div class="spinner-grow spinner-grow-sm text-primary" style="width: 10px; height: 10px;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow spinner-grow-sm text-primary" style="width: 10px; height: 10px;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </h2>
+
+        <div class="row visually-hidden g-0" id="card-group" style="height: 350px; width: 100%;">
+
             <div class="col w-100 ">
                 <div class="card mb-3 o">
                     <div class="card-header">Previsualización:</div>
-                    <div class="card-body overflow-auto" style="height: 300px;"  > 
-                        <div class="row">
-                            
+                    <div class="card-body overflow-auto" style="height: 300px;">
+                        <div class="row ">
+
                         </div>
                     </div>
                 </div>
