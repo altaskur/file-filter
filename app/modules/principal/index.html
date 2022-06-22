@@ -25,9 +25,12 @@
             <div class="form-group mb-3 d-flex justify-content-between"">
                 <div>
                     <label for=" filePath">Carpeta a ordenar: </label>
-                    <input type="file" class="form-control mt-3" id="filePath" webkitdirectory>
+                    <input type="file" class="form-control mt-3" id="filePath">
                 </div>
-                <input type="button" class="btn btn-primary visually-hidden" value="Ordenar">
+                <div id="buttonsContainer" class="visually-hidden">
+                    <input type="reset" class="btn btn-danger" value="Limpiar">
+                    <input type="button" class="btn btn-primary" value="Ordenar">
+                </div>
             </div>
         </form>
 

@@ -2,43 +2,39 @@ const {
     ipcRenderer
 } = require("electron");
 
-
-let loading = document.querySelector('h2');     // get loading div
-
 // Capture input from the user
+let buttonsContainer = document.querySelector("#buttonsContainer");
 let inputFile = document.querySelector('input[type="file"]');
-
-inputFile.addEventListener('click', (event) => {
-    loading.classList.remove('visually-hidden');
-
-    window.setTimeout(() => {
-        loading.classList.add('visually-hidden');
-        console.log("adios!")
-    }, 8000);
-});
+let inputReset =  document.querySelector('input[type="reset"]');
 
 inputFile.addEventListener('change', (event) => {
     let files = event.target.files;
-
     let file = files[0];
     let fileName = file.name;
     let filePath = file.path;
     filePath = filePath.replace(fileName, '');
-    // get directory path
-    loading.classList.remove('visually-hidden');
+
+    buttonsContainer.classList.remove('visually-hidden');
+
     ipcRenderer.send("sendPath", filePath);
 
+});
+       
+inputReset.addEventListener('click', (event) => {
+    buttonsContainer.classList.add('visually-hidden');
+    let cardGruup = document.querySelector('#card-group');
+    cardGruup.classList.add('visually-hidden');
 });
 
 new Promise((resolve, reject) => { // espera hasta que la promesa se resuelva (*)
     ipcRenderer.on("sendFiles", (event, arg) => {// espera hasta que se reciba el mensaje (*)
         resolve(arg); // resuelve la promesa
-        loading.classList.add('visually-hidden');
 
+        // Capturamos el botón de ordenar
+        buttonsContainer.classList.remove('visually-hidden');
         let filterButton = document.querySelector('input[type="button"]');
-        filterButton.classList.remove('visually-hidden');
         filterButton.addEventListener('click', (event) => {
-            console.log("hey me has echo click")
+            ipcRenderer.send("filterFiles", null);
         });
         console.log(arg)
 
@@ -87,6 +83,20 @@ new Promise((resolve, reject) => { // espera hasta que la promesa se resuelva (*
     });
 });
 
+new Promise((resolve, reject) => {
+    ipcRenderer.on("filesFiltered", (event, arg) => {// 
+        let message = arg;
+        resolve(message);
+        console.log(message);
+        if (message[0] == "error") {
 
+        } else {
+            let form = document.querySelector("form");
+            form.reset();
 
-// });
+            buttonsContainer.classList.add('visually-hidden');
+            let cardGruup = document.querySelector('#card-group');
+            cardGruup.classList.add('visually-hidden');
+        }
+    });
+});
