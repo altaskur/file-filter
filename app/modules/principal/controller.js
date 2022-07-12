@@ -1,11 +1,10 @@
-const {
-    ipcRenderer
-} = require("electron");
+const { ipcRenderer } = require("electron");
+const shell = require('electron').shell;
 
 // Capture input from the user
 let buttonsContainer = document.querySelector("#buttonsContainer");
 let inputFile = document.querySelector('input[type="file"]');
-let inputReset =  document.querySelector('input[type="reset"]');
+let inputReset = document.querySelector('input[type="reset"]');
 
 inputFile.addEventListener('change', (event) => {
     let files = event.target.files;
@@ -19,7 +18,7 @@ inputFile.addEventListener('change', (event) => {
     ipcRenderer.send("sendPath", filePath);
 
 });
-       
+
 inputReset.addEventListener('click', (event) => {
     buttonsContainer.classList.add('visually-hidden');
     let cardGruup = document.querySelector('#card-group');
@@ -51,18 +50,18 @@ new Promise((resolve, reject) => { // espera hasta que la promesa se resuelva (*
 
         for (let category in arg) {
             let categoryContainer = document.createElement('div');
-            categoryContainer.classList.add('col-md-5','border','mx-2', 'mb-3', 'rounded');
+            categoryContainer.classList.add('col-md-5', 'border', 'mx-2', 'mb-3', 'rounded');
             categoryContainer.style.height = '200px';
 
 
 
             let categoryHeader = document.createElement('div');
-            categoryHeader.classList.add('card-header','w-100','text-capitalize');
+            categoryHeader.classList.add('card-header', 'w-100', 'text-capitalize');
             categoryHeader.innerHTML = category + ' <span class="badge text-bg-primary">' + arg[category].length + "</span>";
 
             let categoryBody = document.createElement('div');
             categoryBody.style.height = '150px';
-            categoryBody.classList.add('card-body', 'overflow-auto','p-0');
+            categoryBody.classList.add('card-body', 'overflow-auto', 'p-0');
 
 
             let ul = document.createElement('ul');
@@ -98,5 +97,16 @@ new Promise((resolve, reject) => {
             let cardGruup = document.querySelector('#card-group');
             cardGruup.classList.add('visually-hidden');
         }
+    });
+});
+
+
+
+let enlaces = document.querySelectorAll('a[href]');
+
+enlaces.forEach(enlace => {
+    enlace.addEventListener("click", (event) => {
+        event.preventDefault();
+        shell.openExternal(enlace.href)
     });
 });

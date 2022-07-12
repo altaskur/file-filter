@@ -12,16 +12,16 @@ function readFilesController() {
 
     // arrays to store file extensions
     let extensions = {
-        "imágenes": ["png", "jpg", "jpeg", "gif", "bmp", "tiff", "svg", "ico"],
+        "imágenes": ["png", "jpg", "jpeg", "gif", "bmp", "tiff", "svg", "ico","PNG","xfc","psd","ps","ai",   ],
         "videos": ["mp4", "avi", "mkv", "mov", "flv", "wmv", "mpg", "mpeg", "3gp", "m4v", "mts", "m2ts", "ts", "webm", "vob", "m4p", "m4v", "m4b", "m4r", "m4a", "aac", "mp3", "wav", "wma", "ogg", "oga", "mid", "midi", "wv", "amr", "aif", "aiff", "aifc", "cda", "au", "snd", "flac", "m4a", "m4p", "m4b", "m4r", "mp3", "wav", "wma", "ogg", "oga", "mid", "midi", "wv", "amr", "aif", "aiff", "aifc", "cda", "au", "snd", "flac"],
         "audios": ["mp3", "wav", "flac", "ogg", "wma"],
-        "documentos": ["pdf", "txt", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "md", "markdown"],
+        "documentos": ["pdf","odt","odtx","csv","ods", "txt", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "md", "markdown"],
         "ejecutables": ["exe", "msi", "dev"],
         "comprimidos": ["zip", "rar", "7z", "tar", "gz", "bz2"],
         "isos": ["iso"],
         "torrents": ["torrent"],
-        "stls": ["stl"],
-        "código": ["js", "html", "css", "json", "xml", "py", "c", "cpp", "java", "php", "sql", "sh", "bat", "vb", "vbs", "asp", "aspx", "cs", "cshtml", "dart", "go", "h", "hpp", "ini", "java", "js", "jsp", "lua", "m", "md", "pl", "properties", "py", "rb", "sh", "swift", "vb", "vbs", "xml", "yml"],
+        "stls": ["stl","STL","3mf","3MF","gcode"],
+        "código": ["js", "html", "htm","log","jar","css", "json", "xml", "py", "c", "cpp", "java", "php", "sql", "sh", "bat", "vb", "vbs", "asp", "aspx", "cs", "cshtml", "dart", "go", "h", "hpp", "ini", "java", "js", "jsp", "lua", "m", "md", "pl", "properties", "py", "rb", "sh", "swift", "vb", "vbs", "xml", "yml"],
     }
 
     filterData = {};
@@ -104,7 +104,6 @@ function readFilesController() {
                 do {
                     fileResult = itsDuplicity(newPath);
                     fileResult[1] == "false" ? null :  newPath = fileResult[0];
-
                 } while (fileResult[1] != "false");
 
                 if (fileResult[1] == "false") {
